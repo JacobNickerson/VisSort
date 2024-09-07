@@ -33,11 +33,21 @@ bool Sorter::verifySort() {
 }
 
 bool Sorter::verifySortGraphically() {
+    data[0].getSprite()->setFillColor(sf::Color::Green);
     for (int i = 1; i < data.size(); i++) {
-        data[i].getSprite()->setFillColor(sf::Color(255,255,255));
+        data[i].getSprite()->setFillColor(sf::Color::White);
         graphics->drawFrame();
-        data[i].getSprite()->setFillColor(sf::Color(255,0,0));
-        if (data[i] <= data[i-1]) { return false; }
+        data[i].getSprite()->setFillColor(sf::Color::Green);
+        if (data[i] <= data[i-1]) {
+            for (int j = 0; j < data.size(); j++) {
+                graphics->setBarColor(j, sf::Color::Red);
+            }
+            updateGraphics();
+            return false;
+        }
+    }
+    for (int i = 0; i < data.size(); i++) {
+        graphics->setBarColor(i, sf::Color::Red);
     }
     return true;
 }
@@ -68,6 +78,7 @@ void Sorter::updateBar(int i) {
     int bar_width = (window_size.x - 50) / data.size();
     data[i].getSprite()->setPosition(sf::Vector2f((bar_width*i)+25,window_size.y));
 }
+
 void Sorter::testEdit() {
     data[0].getSprite()->setFillColor(sf::Color(0,0,255));
 }
@@ -187,30 +198,53 @@ void Sorter::merge(int L, int M, int R) {
 
 void Sorter::selectionSort() {
     for (int L = 0; L < data.size(); L++) {
-        graphics->setBarColor(L, sf::Color(0,255,0));
-        data[L].getSprite()->setFillColor(sf::Color(0,255,0));
-        graphics->drawFrame();
         int smallest = data[L].getValue();
         int idx = L;
+        data[L].getSprite()->setFillColor(sf::Color::Cyan);
         for (int i = L+1; i < data.size(); i++) {
-            graphics->setBarColor(i, sf::Color(0,255,255));
-            graphics->drawFrame();
-            graphics->setBarColor(i, sf::Color(255,0,0));
+            data[i].getSprite()->setFillColor(sf::Color::Cyan);
             if (data[i] < smallest) {
-                if (idx != L) {
-                    graphics->setBarColor(idx, sf::Color(255,0,0));
-                }
-                graphics->setBarColor(i, sf::Color(255,255,255));
                 smallest = data[i].getValue();
                 idx = i;
-            }
+            } 
             graphics->drawFrame();
+            data[i].getSprite()->setFillColor(sf::Color::Red);
+
         }
-        graphics->setBarColor(L, sf::Color(255,0,0));
+        data[L].getSprite()->setFillColor(sf::Color::Red);
         std::swap(data[L],data[idx]);
         updateBar(L);
         updateBar(idx);
+        data[L].getSprite()->setFillColor(sf::Color::Green);
         graphics->drawFrame();
+    }
+    for (int i = 0; i < data.size(); i++) {
+        graphics->setBarColor(i, sf::Color::Red);
+    }
+    updateGraphics();
+}
+
+void Sorter::bubbleSort() {
+    int n = data.size();
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            data[j].getSprite()->setFillColor(sf::Color::Cyan);
+            if (data[j] > data[j + 1]) {
+                std::swap(data[j], data[j + 1]);
+                updateBar(j);
+                updateBar(j+1);
+                swapped = true;
+            } 
+            graphics->drawFrame(); 
+            data[j].getSprite()->setFillColor(sf::Color::Red);
+        }
+        graphics->setBarColor(n-i-1, sf::Color::Green);
+        if (swapped == false)
+            break;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        graphics->setBarColor(i, sf::Color::Red);
     }
     updateGraphics();
 }

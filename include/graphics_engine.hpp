@@ -22,7 +22,6 @@ class Graphics_Engine {
 
         sf::RectangleShape* getSprite(int i);
 
-    
     private:
         std::vector<sf::RectangleShape> sprites;
         sf::Vector2u window_size;

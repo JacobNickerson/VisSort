@@ -39,6 +39,8 @@ class Sorter {
 
         void selectionSort();
 
+        void bubbleSort();
+
     private:
         std::vector<Datapoint> data;
         std::random_device rd;
