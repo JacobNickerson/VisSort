@@ -5,6 +5,7 @@
 #include <random>
 #include <chrono>
 #include <thread>
+#include <climits>
 
 #include "datapoint.hpp"
 #include "graphics_engine.hpp"
@@ -26,6 +27,7 @@ class Sorter {
         bool verifySortGraphically();
 
         void updateGraphics();
+        void updateBar(int i);
 
         void testEdit();
 
@@ -34,6 +36,8 @@ class Sorter {
         void quickSort(int L, int R);
 
         void mergeSort(int L, int R);
+
+        void selectionSort();
 
     private:
         std::vector<Datapoint> data;

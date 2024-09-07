@@ -19,6 +19,9 @@ void Sorter::printData() {
 
 void Sorter::shuffleData() {
     std::shuffle(data.begin(), data.end(), rng);
+    for (int i = 0; i < data.size(); i++) {
+        data[i].setSprite(graphics->getSprite(data[i].getValue()));
+    }
     updateGraphics();
 }
 
@@ -60,6 +63,11 @@ void Sorter::updateGraphics() {
     }
 }
 
+void Sorter::updateBar(int i) {
+    sf::Vector2u window_size = graphics->getWindowSize();
+    int bar_width = (window_size.x - 50) / data.size();
+    data[i].getSprite()->setPosition(sf::Vector2f((bar_width*i)+25,window_size.y));
+}
 void Sorter::testEdit() {
     data[0].getSprite()->setFillColor(sf::Color(0,0,255));
 }
@@ -123,7 +131,6 @@ void Sorter::mergeSort(int L, int R) {
     mergeSort(L, mid);
     mergeSort(mid+1, R);
     merge(L, mid, R);
-    updateGraphics();
     graphics->drawFrame();
 }
 
@@ -144,34 +151,66 @@ void Sorter::merge(int L, int M, int R) {
         graphics->drawFrame();
     }
 
+
     int i = 0, j = 0;
     int k = L;
-
     while (i < n1 && j < n2) {
-        graphics->drawFrame();
         if (L_array[i] <= R_array[j]) {
             data[k] = L_array[i++];
             data[k].getSprite()->setFillColor(sf::Color(255,0,0));
-            data[k++].getSprite()->setOutlineColor(sf::Color(255,255,255));
+            data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         } else {
             data[k] = R_array[j++];
             data[k].getSprite()->setFillColor(sf::Color(255,0,0));
-            data[k++].getSprite()->setOutlineColor(sf::Color(255,255,255));
+            data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         }
+        updateBar(k++);
         graphics->drawFrame();
     }
 
     while (i < n1) {
         data[k] = L_array[i++];
         data[k].getSprite()->setFillColor(sf::Color(255,0,0));
-        data[k++].getSprite()->setOutlineColor(sf::Color(255,255,255));
+        data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
+        updateBar(k++);
         graphics->drawFrame();
     }
 
     while (j < n2) {
         data[k] = R_array[j++];
         data[k].getSprite()->setFillColor(sf::Color(255,0,0));
-        data[k++].getSprite()->setOutlineColor(sf::Color(255,255,255));
+        data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
+        updateBar(k++);
         graphics->drawFrame();
     }
+}
+
+void Sorter::selectionSort() {
+    for (int L = 0; L < data.size(); L++) {
+        graphics->setBarColor(L, sf::Color(0,255,0));
+        data[L].getSprite()->setFillColor(sf::Color(0,255,0));
+        graphics->drawFrame();
+        int smallest = data[L].getValue();
+        int idx = L;
+        for (int i = L+1; i < data.size(); i++) {
+            graphics->setBarColor(i, sf::Color(0,255,255));
+            graphics->drawFrame();
+            graphics->setBarColor(i, sf::Color(255,0,0));
+            if (data[i] < smallest) {
+                if (idx != L) {
+                    graphics->setBarColor(idx, sf::Color(255,0,0));
+                }
+                graphics->setBarColor(i, sf::Color(255,255,255));
+                smallest = data[i].getValue();
+                idx = i;
+            }
+            graphics->drawFrame();
+        }
+        graphics->setBarColor(L, sf::Color(255,0,0));
+        std::swap(data[L],data[idx]);
+        updateBar(L);
+        updateBar(idx);
+        graphics->drawFrame();
+    }
+    updateGraphics();
 }
