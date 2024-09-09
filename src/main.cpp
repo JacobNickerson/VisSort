@@ -26,8 +26,8 @@ int main(int argc, char* argv[]) {
                 return 1;
             }
             try {
-                std::string data_point_count_string = argv[i+1];
-                data_point_count = std::stoul(argv[i+1]);
+                std::string data_point_count_string = argv[(i++)+1];
+                data_point_count = std::stoul(data_point_count_string);
                 data_point_set = true;
                 std::cout << "Data point count set successfully." << std::endl;
             } catch (const std::invalid_argument& e) {
