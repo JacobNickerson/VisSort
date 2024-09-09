@@ -32,8 +32,10 @@ int main(int argc, char* argv[]) {
                 std::cout << "Data point count set successfully." << std::endl;
             } catch (const std::invalid_argument& e) {
                 std::cerr << "Error: Invalid Number" << std::endl;
+                return 1;
             } catch (const std::out_of_range& e) {
                 std::cerr << "Error: Number is out of the valid range" << std::endl;
+                return 1;
             }
         } else {
             std::cerr << "Invalid option" << std::endl;
