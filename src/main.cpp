@@ -17,12 +17,12 @@ int main(int argc, char* argv[]) {
             std::cout << "usage: VisSort [options]" << '\n';
             std::cout << "options: " << '\n';
             std::cout << "-h, --help   Displays this menu" << '\n';
-            std::cout << "-c, --count [number]   Sets data point count to number" << std::endl;
+            std::cout << "-c, --count <number>   Sets data point count to number" << std::endl;
             return 0;
         } else if (arg == "-c" || arg == "--count") {
-            if (argc < i+1) {
+            if (argc <= i+1) {
                 std::cerr << "Error: Missing number" << '\n';
-                std::cout << "Usage: VisSort -c [number]" << std::endl;
+                std::cout << "Usage: VisSort -c <number>" << std::endl;
                 return 1;
             }
             try {
