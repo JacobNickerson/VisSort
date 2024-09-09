@@ -81,7 +81,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](images/screenshot.png)
 
 A small SFML application used to visualize various sorting algorithms! Currently supporting bubbleSort, mergeSort, quickSort, insertionSort, selectionSort, and bogoSort.
 See how sorting algorithms work in real time as VisSort highlights which data points are being compared or operated on.
@@ -144,15 +144,12 @@ This should be sufficient. Most of the build process is automated in the Makefil
 ## Usage
 
 To run VisSort, use the compiled executable created by following the instructions in Getting Started. Currently, a windows release is not available, but it may be released in the future.
+VisSort now supports several terminal flags, use --help or -h to see a list of them.
+
 ### Settings
-The number of bars/datapoints can be altered by editing src/main.cpp
-```
-int data_point_count = 200;
-```
-This line can be edited to change the number of data points.
+The number of datapoints/bars can be edited using -c [number] or --count [number].
 
 ### Controls
-<br />
 The controls for the program are as follows:
 ESC to scramble data, I for insertionSort, B for bogoSort, Q for quickSort, M for mergeSort, S for selectionSort, U for bubbleSort, and V to verify the current sortedness of the data.
 
