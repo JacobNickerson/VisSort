@@ -168,13 +168,11 @@ void Sorter::merge(int L, int M, int R) {
     while (i < n1 && j < n2) {
         if (L_array[i] <= R_array[j]) {
             data[k] = L_array[i++];
-            data[k].getSprite()->setFillColor(sf::Color(255,0,0));
-            data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         } else {
             data[k] = R_array[j++];
-            data[k].getSprite()->setFillColor(sf::Color(255,0,0));
-            data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         }
+        data[k].getSprite()->setFillColor(sf::Color(255,0,0));
+        data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         updateBar(k++);
         graphics->drawFrame();
     }
@@ -240,10 +238,15 @@ void Sorter::bubbleSort() {
             data[j].getSprite()->setFillColor(sf::Color::Red);
         }
         graphics->setBarColor(n-i-1, sf::Color::Green);
-        if (swapped == false)
+        if (swapped == false) {
+            for (int j = i; j >= 0; j--) {
+                data[j].getSprite()->setFillColor(sf::Color::Green);
+                graphics->drawFrame();
+            }
             break;
+        }
     }
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n; i++) {
         graphics->setBarColor(i, sf::Color::Red);
     }
     updateGraphics();
