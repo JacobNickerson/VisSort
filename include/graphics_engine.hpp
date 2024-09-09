@@ -18,7 +18,7 @@ class Graphics_Engine {
 
         void updateAllBars();
 
-        sf::Vector2u getWindowSize();
+        const sf::Vector2u getWindowSize();
 
         sf::RectangleShape* getSprite(int i);
 

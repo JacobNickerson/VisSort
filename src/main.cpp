@@ -43,14 +43,15 @@ int main(int argc, char* argv[]) {
         }
     }
     if (!data_point_set) {
-        data_point_count = 200;
+        data_point_count = 256;
     }
-    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-    int window_width = 1280;
-    int window_height = 720;
-    int window_pos_x = (desktop.width - window_width) / 2;
-    int window_pos_y = (desktop.height - window_height) / 2;
-    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "VisSort");
+    const sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+    const int window_width = 1280;
+    const int window_height = 720;
+    const int window_pos_x = (desktop.width - window_width) / 2;
+    const int window_pos_y = (desktop.height - window_height) / 2;
+     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "VisSort", sf::Style::Close);
+    window.setSize(sf::Vector2u(window_width, window_height)); 
     window.setPosition(sf::Vector2i(window_pos_x, window_pos_y));
     Graphics_Engine graphics(data_point_count, &window);
     Sorter sorter(data_point_count, &graphics);

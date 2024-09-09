@@ -2,13 +2,13 @@
 
 Graphics_Engine::Graphics_Engine(size_t size, sf::RenderWindow* win) : window(win){
     sf::Vector2u window_size = window->getSize();
-    const float bar_width = (window_size.x - 50.0f) / size;  // subtracting constants to leave a small offset
-    float bar_height_increment = (window_size.y - 200.0f) / size; 
+    const int bar_width = ((window_size.x)) / size;  
+    const int bar_height_increment = (window_size.y - 200.0f) / size; 
     for (int i = 0; i < size; i++) {
-        float bar_height = bar_height_increment * (i+1);
+        const int bar_height = bar_height_increment * (i+1);
         sf::RectangleShape rect(sf::Vector2f(bar_width-1, bar_height));  // remove 1 to account for border
         rect.setOrigin(sf::Vector2f(0, bar_height));
-        rect.move(sf::Vector2f(bar_width*i+25,window_size.y)); // adding constant to account for reduced width, equal offset on each side
+        rect.move(sf::Vector2f(bar_width*i,window_size.y)); 
         rect.setFillColor(sf::Color(255,0,0));
         rect.setOutlineThickness(1);
         sprites.push_back(rect);
@@ -24,7 +24,7 @@ void Graphics_Engine::drawFrame() {
 }
 
 void Graphics_Engine::swapBars(int i, int j) {
-    sf::Vector2f i_position = sprites[i].getPosition();
+    const sf::Vector2f i_position = sprites[i].getPosition();
     sprites[i].setPosition(sprites[j].getPosition());
     sprites[j].setPosition(i_position);
     std::swap(sprites[i], sprites[j]);
@@ -34,7 +34,7 @@ void Graphics_Engine::setBarColor(int i, sf::Color color) {
     sprites[i].setFillColor(color);
 }
 
-sf::Vector2u Graphics_Engine::getWindowSize() {
+const sf::Vector2u Graphics_Engine::getWindowSize() {
     return window->getSize();
 }
 

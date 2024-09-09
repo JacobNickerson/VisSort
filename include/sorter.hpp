@@ -29,8 +29,6 @@ class Sorter {
         void updateGraphics();
         void updateBar(int i);
 
-        void testEdit();
-
         void insertionSort();
 
         void quickSort(int L, int R);
