@@ -142,7 +142,6 @@ void Sorter::mergeSort(int L, int R) {
     mergeSort(L, mid);
     mergeSort(mid+1, R);
     merge(L, mid, R);
-    graphics->drawFrame();
 }
 
 void Sorter::merge(int L, int M, int R) {
@@ -167,9 +166,11 @@ void Sorter::merge(int L, int M, int R) {
     int k = L;
     while (i < n1 && j < n2) {
         if (L_array[i] <= R_array[j]) {
-            data[k] = L_array[i++];
+            data[k] = L_array[i];
+            L_array[i++].getSprite()->setFillColor(sf::Color(0,0,0));
         } else {
-            data[k] = R_array[j++];
+            data[k] = R_array[j];
+            R_array[j++].getSprite()->setFillColor(sf::Color(0,0,0));
         }
         data[k].getSprite()->setFillColor(sf::Color(255,0,0));
         data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
@@ -178,7 +179,8 @@ void Sorter::merge(int L, int M, int R) {
     }
 
     while (i < n1) {
-        data[k] = L_array[i++];
+        data[k] = L_array[i];
+        L_array[i++].getSprite()->setFillColor(sf::Color(0,0,0));
         data[k].getSprite()->setFillColor(sf::Color(255,0,0));
         data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         updateBar(k++);
@@ -186,7 +188,8 @@ void Sorter::merge(int L, int M, int R) {
     }
 
     while (j < n2) {
-        data[k] = R_array[j++];
+        data[k] = R_array[j];
+        R_array[j++].getSprite()->setFillColor(sf::Color(0,0,0));
         data[k].getSprite()->setFillColor(sf::Color(255,0,0));
         data[k].getSprite()->setOutlineColor(sf::Color(255,255,255));
         updateBar(k++);
