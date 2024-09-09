@@ -4,12 +4,46 @@
 
 #include <chrono>
 #include <thread>
+#include <stdexcept>
 
 using namespace std::chrono_literals;
 
-int main() {
+int main(int argc, char* argv[]) {
+    size_t data_point_count;
+    bool data_point_set = false;
+    for (int i = 1; i < argc; i++) {
+        std::string arg = argv[i];
+        if (arg == "-h" || arg == "--help") {
+            std::cout << "usage: VisSort [options]" << '\n';
+            std::cout << "options: " << '\n';
+            std::cout << "-h, --help   Displays this menu" << '\n';
+            std::cout << "-c, --count [number]   Sets data point count to number" << std::endl;
+            return 0;
+        } else if (arg == "-c" || arg == "--count") {
+            if (argc < i+1) {
+                std::cerr << "Error: Missing number" << '\n';
+                std::cout << "Usage: VisSort -c [number]" << std::endl;
+                return 1;
+            }
+            try {
+                std::string data_point_count_string = argv[i+1];
+                data_point_count = std::stoul(argv[i+1]);
+                data_point_set = true;
+                std::cout << "Data point count set successfully." << std::endl;
+            } catch (const std::invalid_argument& e) {
+                std::cerr << "Error: Invalid Number" << std::endl;
+            } catch (const std::out_of_range& e) {
+                std::cerr << "Error: Number is out of the valid range" << std::endl;
+            }
+        } else {
+            std::cerr << "Invalid option" << std::endl;
+            return 1;
+        }
+    }
+    if (!data_point_set) {
+        data_point_count = 200;
+    }
     sf::RenderWindow window(sf::VideoMode(1280, 720), "VisSort");
-    size_t data_point_count = 200;
     Graphics_Engine graphics(data_point_count, &window);
     Sorter sorter(data_point_count, &graphics);
     sorter.shuffleData();
