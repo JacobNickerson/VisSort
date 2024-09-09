@@ -120,7 +120,7 @@ VisSort was built using WSL (Ubuntu 22.04.2 LTS on Windows 10 x86_64). Your vers
    ```
 3. Install packages with apt
    ```sh
-   sudo apt install libsfml-dev && sudo apt install make
+   sudo apt install libsfml-dev make
    ```
 4. Install build-essential if you don't have G++ or a C++ compiler 
    ```sh
