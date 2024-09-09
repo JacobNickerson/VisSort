@@ -29,10 +29,6 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://github.com/JacobNickerson/VisSort">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
 <h3 align="center">VisSort</h3>
 
@@ -117,17 +113,18 @@ VisSort was built using WSL (Ubuntu 22.04.2 LTS on Windows 10 x86_64). Your vers
    ```sh
    git clone https://github.com/JacobNickerson/VisSort.git
    ```
-2. Update apt-get
+2. Update apt
    ```sh
-   sudo apt-get update
+   sudo apt update
+   sudo apt upgrade
    ```
-3. Install packages with apt-get
+3. Install packages with apt
    ```sh
-   sudo apt-get install libsfml-dev && sudo apt-get install make
+   sudo apt install libsfml-dev && sudo apt install make
    ```
 4. Install build-essential if you don't have G++ or a C++ compiler 
    ```sh
-   sudo apt-get install build-essential
+   sudo apt install build-essential
    ```
 5. Compile and run using the included Makefile
    ```sh
