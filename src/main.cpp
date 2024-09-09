@@ -43,7 +43,13 @@ int main(int argc, char* argv[]) {
     if (!data_point_set) {
         data_point_count = 200;
     }
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "VisSort");
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+    int window_width = 1280;
+    int window_height = 720;
+    int window_pos_x = (desktop.width - window_width) / 2;
+    int window_pos_y = (desktop.height - window_height) / 2;
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "VisSort");
+    window.setPosition(sf::Vector2i(window_pos_x, window_pos_y));
     Graphics_Engine graphics(data_point_count, &window);
     Sorter sorter(data_point_count, &graphics);
     sorter.shuffleData();
