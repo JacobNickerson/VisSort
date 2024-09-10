@@ -22,10 +22,13 @@ class Graphics_Engine {
 
         sf::RectangleShape* getSprite(int i);
 
+        const int getOffset();
+
     private:
         std::vector<sf::RectangleShape> sprites;
         sf::Vector2u window_size;
         sf::RenderWindow* window;
+        int offset;
 };
 
 #endif

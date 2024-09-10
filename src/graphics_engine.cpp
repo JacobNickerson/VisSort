@@ -1,14 +1,15 @@
 #include "graphics_engine.hpp"
 
-Graphics_Engine::Graphics_Engine(size_t size, sf::RenderWindow* win) : window(win){
+Graphics_Engine::Graphics_Engine(size_t size, sf::RenderWindow* win) : window(win) {
     sf::Vector2u window_size = window->getSize();
+    offset = (window_size.x % size) / 2;
     const int bar_width = ((window_size.x)) / size;  
     const int bar_height_increment = (window_size.y - 200.0f) / size; 
     for (int i = 0; i < size; i++) {
         const int bar_height = bar_height_increment * (i+1);
         sf::RectangleShape rect(sf::Vector2f(bar_width-1, bar_height));  // remove 1 to account for border
         rect.setOrigin(sf::Vector2f(0, bar_height));
-        rect.move(sf::Vector2f(bar_width*i,window_size.y)); 
+        rect.move(sf::Vector2f(bar_width*i+offset,window_size.y)); 
         rect.setFillColor(sf::Color(255,0,0));
         rect.setOutlineThickness(1);
         sprites.push_back(rect);
@@ -40,4 +41,8 @@ const sf::Vector2u Graphics_Engine::getWindowSize() {
 
 sf::RectangleShape* Graphics_Engine::getSprite(int i) {
     return &sprites[i];
+}
+
+const int Graphics_Engine::getOffset() {
+    return offset;
 }

@@ -69,14 +69,14 @@ void Sorter::updateGraphics() {
     sf::Vector2u window_size = graphics->getWindowSize();
     int bar_width = (window_size.x) / data.size();
     for (int i = 0; i < data.size(); i++) {
-        data[i].getSprite()->setPosition(sf::Vector2f((bar_width*i),window_size.y));
+        data[i].getSprite()->setPosition(sf::Vector2f((bar_width*i+graphics->getOffset()),window_size.y));
     }
 }
 
 void Sorter::updateBar(int i) {
     sf::Vector2u window_size = graphics->getWindowSize();
     int bar_width = (window_size.x) / data.size();
-    data[i].getSprite()->setPosition(sf::Vector2f((bar_width*i),window_size.y));
+    data[i].getSprite()->setPosition(sf::Vector2f((bar_width*i+graphics->getOffset()),window_size.y));
 }
 
 void Sorter::insertionSort() {
