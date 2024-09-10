@@ -40,7 +40,6 @@ int main(int argc, char* argv[]) {
             try {
                 std::string data_point_count_string = argv[(i++)+1];
                 data_point_count = std::stoul(data_point_count_string);
-                std::cout << "Data point count set successfully." << std::endl;
             } catch (const std::invalid_argument& e) {
                 std::cerr << "Error: Invalid Number" << std::endl;
                 return 1;
@@ -123,23 +122,17 @@ int main(int argc, char* argv[]) {
         }
     }
     if (!data_point_set) {
-        data_point_count = 256;
+        data_point_count = 200;
     }
     if (!window_height_set && !window_width_set) {
-        window_width = 1280;
-        window_height = 720;
+        window_width = 800;
+        window_height = 800;
     } else if (!window_height_set) {
-        std::cout << "Automatically setting window height" << '\n';
-        std::cout << window_width << std::endl;
-        window_height = (window_width * 9) / 16;  // default to a 16:9 resolution
-        std::cout << window_height << std::endl;
+        window_height = window_width;  // default to a 1:1 resolution
     } else if (!window_width_set) {
-        std::cout << "Automatically setting window width" << '\n';
-        std::cout << window_height << std::endl;
-        window_width = (window_height * 16) / 9;
-        std::cout << window_width << std::endl;
+        window_width = window_height;
     }
-    if (data_point_count > window_width) {
+    if (data_point_count > window_width || data_point_count > window_height) {
         std::cerr << "Error: Too many data points to display on screen" << std::endl;
         return 1;
     }
