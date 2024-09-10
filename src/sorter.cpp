@@ -118,14 +118,16 @@ int Sorter::partition(int L, int R) {
         if (data[j] <= pivot) {
             i++;
             std::swap(data[i], data[j]);
-            updateGraphics();
+            updateBar(i);
+            updateBar(j);
         }
         graphics->drawFrame();
         selected_sprite->setFillColor(sf::Color(255,0,0));
     }
     pivot.getSprite()->setFillColor(sf::Color(255,0,0));
     std::swap(data[i+1], data[R]);
-    updateGraphics();
+    updateBar(i+1);
+    updateBar(R);
     graphics->drawFrame();
     
     return (i + 1);
