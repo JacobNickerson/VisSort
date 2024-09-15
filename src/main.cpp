@@ -126,13 +126,13 @@ int main(int argc, char* argv[]) {
     }
     if (!window_height_set && !window_width_set) {
         window_width = 800;
-        window_height = 800;
+        window_height = 400;
     } else if (!window_height_set) {
-        window_height = window_width;  // default to a 1:1 resolution
+        window_height = window_width/2;  // default to a 2:1 resolution
     } else if (!window_width_set) {
-        window_width = window_height;
+        window_width = window_height*2;
     }
-    if (data_point_count > window_width || data_point_count > window_height) {
+    if (data_point_count > (window_width/2) || data_point_count > (window_height)) {
         std::cerr << "Error: Too many data points to display on screen" << std::endl;
         return 1;
     }

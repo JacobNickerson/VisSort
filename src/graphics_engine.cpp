@@ -8,7 +8,7 @@ Graphics_Engine::Graphics_Engine(size_t size, sf::RenderWindow* win) : window(wi
     for (int i = 0; i < size; i++) {
         const int bar_height = bar_height_increment * (i+1);
         sf::RectangleShape rect;
-        if (bar_width > 1) {
+        if (bar_width > 2) {
             rect.setSize(sf::Vector2f((bar_width-1), bar_height));  // remove 1 to account for border
             rect.setOutlineThickness(1);
         } else {
