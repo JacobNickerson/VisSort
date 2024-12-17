@@ -1,24 +1,23 @@
 #include "graphics_engine.hpp"
-#include "datapoint.hpp"
 #include "sorter.hpp"
 
-#include <chrono>
-#include <thread>
+#include <string>
 #include <stdexcept>
+#include <iostream>
 
-using namespace std::chrono_literals;
+// using namespace std::chrono_literals;
 
 int main(int argc, char* argv[]) {
     size_t data_point_count;
     bool data_point_set = false;
     int window_width;
-    bool window_width_set = false;
+    bool window_width_set = false;  
     int window_height;
     bool window_height_set = false;
     const sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     for (int i = 1; i < argc; i++) {
-        std::string arg = argv[i];
-        if (arg == "-h" || arg == "--help") {
+        std::string arg = std::string(argv[i]);
+        if (arg == std::string("-h") || arg == std::string("--help")) {
             std::cout << "usage: vis-sort [options]" << '\n';
             std::cout << "options: " << '\n';
             std::cout << "-h, --help             Displays this menu" << '\n';
@@ -187,6 +186,9 @@ int main(int argc, char* argv[]) {
 
                     case sf::Keyboard::V:
                         sorter.verifySortGraphically();
+                        break;
+
+                    default:
                         break;
                 }
             }

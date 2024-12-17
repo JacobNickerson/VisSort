@@ -2,7 +2,6 @@
 #define GRAPHICS_ENGINE_HPP
 
 #include <SFML/Graphics.hpp>
-#include <memory>
 
 class Graphics_Engine {
     public:

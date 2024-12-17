@@ -2,7 +2,6 @@
 #define DATAPOINT_HPP
 
 #include <SFML/Graphics.hpp>
-#include <memory>
 #include <iostream>
 
 class Datapoint {

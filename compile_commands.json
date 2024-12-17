@@ -1,0 +1,74 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Weverything",
+      "-pedantic",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/obj/datapoint.o",
+      "src/datapoint.cpp"
+    ],
+    "directory": "/home/jacobnickerson/VisSort",
+    "file": "/home/jacobnickerson/VisSort/src/datapoint.cpp",
+    "output": "/home/jacobnickerson/VisSort/build/obj/datapoint.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Weverything",
+      "-pedantic",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/obj/graphics_engine.o",
+      "src/graphics_engine.cpp"
+    ],
+    "directory": "/home/jacobnickerson/VisSort",
+    "file": "/home/jacobnickerson/VisSort/src/graphics_engine.cpp",
+    "output": "/home/jacobnickerson/VisSort/build/obj/graphics_engine.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Weverything",
+      "-pedantic",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/obj/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/jacobnickerson/VisSort",
+    "file": "/home/jacobnickerson/VisSort/src/main.cpp",
+    "output": "/home/jacobnickerson/VisSort/build/obj/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-Weverything",
+      "-pedantic",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/obj/sorter.o",
+      "src/sorter.cpp"
+    ],
+    "directory": "/home/jacobnickerson/VisSort",
+    "file": "/home/jacobnickerson/VisSort/src/sorter.cpp",
+    "output": "/home/jacobnickerson/VisSort/build/obj/sorter.o"
+  }
+]

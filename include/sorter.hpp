@@ -1,16 +1,13 @@
 #ifndef SORTER_HPP
 #define SORTER_HPP
 
-#include <algorithm>
 #include <random>
-#include <chrono>
-#include <thread>
 #include <climits>
 
 #include "datapoint.hpp"
 #include "graphics_engine.hpp"
 
-using namespace std::chrono_literals;
+// using namespace std::chrono_literals;
 
 class Sorter {
     public:
